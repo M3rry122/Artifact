@@ -14,3 +14,4 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/',[PostController::class, 'tweet']);
+Route::get('/posts/{post}', [PostController::class ,'show']);

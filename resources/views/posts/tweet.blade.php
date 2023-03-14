@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<x-app-layout>
+    <x-slot name="header">
+        　tweet
+    </x-slot>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -30,5 +34,7 @@
                 }
            }
         </script>
+        <p>ログインユーザー：{{ Auth::user()->name }}</p>
     </body>
 </html>
+</x-app-layout>

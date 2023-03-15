@@ -5,7 +5,7 @@
         <title>Blog</title>
     </head>
     <body>
-        <form action="/posts" method="POST">
+        <form action="/games" method="POST">
             @csrf
             <div class="body">
                 <h2>Body</h2>

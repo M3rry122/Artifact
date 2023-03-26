@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Post;
+use App\Models\game;
+use App\Models\genre;
+use App\Models\reply;
+use App\Models\Nice;
 use App\Http\Requests\PostRequest;
 
 class GameController extends Controller
@@ -19,13 +24,15 @@ class GameController extends Controller
     {
         return view('games/show')->with(['post' => $post]);
     }
-    public function create()
+    public function create(game $game)
     {
-        return view('games/create');
+        return view('games/create')->with(['games' => $game->get()]);
+        //gameのデータをcreate.blade.phpに渡す
     }
     public function store(Post $post,PostRequest $request)
     {
          $input = $request['post'];
+         $input += ['user_id' => $request->user()->id];
          $post->fill($input)->save();
          return redirect('/games/' . $post->id);
     }
@@ -36,8 +43,8 @@ class GameController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $input_post = $request['post'];
+        $input_post += ['user_id' => $request->user()->id];
         $post->fill($input_post)->save();
-        
         return redirect('/games/' . $post->id);
     }
     public function delete(Post $post)
@@ -49,8 +56,17 @@ class GameController extends Controller
     {
         return view('games/genre_search');
     }
-    public function fps_tps_select()
+    public function fps_tps_select(Post $post)
     {
-        return view('games/fps_tps_select');
+        return view('games/fps_tps_select')->with(['games' => $post->get()]);
+    }
+     public function apex()
+    {
+        return view('games/apex');
+    }
+    public function game_index(game $game)
+    {
+        return view('categories/game_index')->with(['posts' => $game->getBygame()]);
+        //選択されたgameのデータをgame_indexに渡す
     }
 }

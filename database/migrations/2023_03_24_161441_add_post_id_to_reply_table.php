@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('replies', function (Blueprint $table) {
-            $table->id();
-             $table->string('body', 300);
-            $table->timestamps();
-             $table->softDeletes();
+        Schema::table('replies', function (Blueprint $table) {
+            $table->foreignId('post_id')->constrained();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('replies');
+        Schema::table('replies', function (Blueprint $table) {
+            //
+        });
     }
 };

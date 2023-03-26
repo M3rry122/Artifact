@@ -4,18 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\game;
 
 class genre extends Model
 {
     use HasFactory;
-}
-
-public function games()
-{
-    return $this->hasMany(Post::class);
-}
-
-public function users()
-{
-    return $this->belongsToMany(user::class);
+    
+     public function games()
+    {
+    return $this->hasMany(game::class);
+    //gameに対するリレーション
+    }
 }

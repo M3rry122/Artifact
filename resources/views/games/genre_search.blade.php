@@ -1,8 +1,12 @@
-<!DOCTYPE HTML>
+<x-app-layout>
+    <x-slot name="header">
+        　ジャンル選択
+    </x-slot>
+    <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>genre select</title>
+        <title>検索</title>
         <style>
         .btn--orange,
         a.btn--orange {
@@ -32,3 +36,4 @@
         </div>
     </body>
 </html>
+</x-app-layout>

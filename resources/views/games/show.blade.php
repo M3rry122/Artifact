@@ -12,13 +12,30 @@
         </h1>
         <div class="content">
             <div class="content__post">
-                <h3>本文</h3>
+                <small>{{ $post->user->name }}</small>
+                <a href="">{{ $post->game->title }}</a>
+                <h3>本</h3>
                 <p>{{ $post->body }}</p>    
             </div>
         </div>
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/games/mypage">マイページへ</a>
+            <a href="#" onclick="history.back(); return false;">戻る</a>
         </div>
         <div class="edit"><a href="/games/{{ $post->id }}/edit">投稿を編集</a></div>
+         <form action="/games/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                         @csrf
+                         @method('DELETE')
+                    </form>
+         <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+         <script>
+            function deletePost(id) {
+                 'use strict'
+
+            if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                 document.getElementById(`form_${id}`).submit();
+                }
+           }
+        </script>
     </body>
 </html>

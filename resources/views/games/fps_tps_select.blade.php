@@ -17,7 +17,11 @@
         </style>
     </head>
     <body>
-        <a href="" class="btn btn--orange">APEX</a>
+       @foreach ($games as $game)
+                <div class='game'>
+                    <a href="/categories/{{ $game->game->id }}">{{ $game->game->title }}</a>
+            @endforeach 
+            <a href="/categories/game_index">{{ $game->game->title }}</a>
         <a href="" class="btn btn--orange">VALORANT</a>
         <a href="" class="btn btn--orange">PUBG</a>
         <a href="" class="btn btn--orange">OW2</a>
@@ -29,6 +33,6 @@
         <a href="" class="btn btn--orange">スプラトゥーン</a>
         <div class="footer">
             <a href="/games/genre_search">戻る</a>
-        </div>
+        
     </body>
 </html>

@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('genres', function (Blueprint $table) {
-            $table->id();
-            $table->string('title', 20);
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('posts', function (Blueprint $table) {
+             $table->foreignId('game_id')->constrained();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genres');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 };

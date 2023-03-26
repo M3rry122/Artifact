@@ -1,4 +1,9 @@
-<!DOCTYPE HTML>
+<x-app-layout>
+    <x-slot name="header">
+        　書き込み
+    </x-slot>
+    <!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"><!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -7,10 +12,18 @@
     <body>
         <form action="/games" method="POST">
             @csrf
+            <div class="game">
+               <h2>game</h2>
+               <select name="post[game_id]">
+                  @foreach($games as $game)
+                       <option value="{{ $game->id }}">{{ $game->title }}</option>
+                  @endforeach
+               </select>
             <div class="body">
-                <h2>Body</h2>
+                <h2>本文</h2>
                 <textarea name="post[body]" placeholder="今日も1日お疲れさまでした。">{{ old('post.body') }}</textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+            </div>
             </div>
             <input type="submit" value="store"/>
         </form>
@@ -19,3 +32,4 @@
         </div>
     </body>
 </html>
+</x-app-layout>

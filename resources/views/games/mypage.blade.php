@@ -6,7 +6,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <p>ログインユーザー：{{ Auth::user()->name }}</p>
+        <p>{{ Auth::user()->name }}</p>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <style>
         .btn--orange,
@@ -25,13 +25,13 @@
         <div class='games'>
             @foreach ($games as $post)
                 <div class='post'>
+                    <a href="">{{ $post->game->title }}</a>
                     <p class='body'> 
                       <a href="/games/{{ $post->id }}">{{ $post->body }}</a> 
                     </p>
                     <form action="/games/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                          @csrf
                          @method('DELETE')
-                     <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
                     </form>
                 </div>
             @endforeach    
@@ -46,8 +46,7 @@
                 }
            }
         </script>
-        <a href='/games/genre_search' class="btn btn--orange">検索</a>
-        <a href='/games/create' class="btn btn--orange">+</a>
+        <small>{{ $post->user->name }}</small>
     </body>
 </html>
 </x-app-layout>

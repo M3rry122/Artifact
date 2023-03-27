@@ -27,6 +27,30 @@
                          @csrf
                          @method('DELETE')
                     </form>
+                   <span>
+<img src="{{asset('img/nicebutton.png')}}" width="30px">
+ 
+<!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
+@if($like)
+<!-- 「いいね」取消用ボタンを表示 -->
+	<a href="{{ route('unlike', $post) }}" class="btn btn-success btn-sm">
+		いいね
+		<!-- 「いいね」の数を表示 -->
+		<span class="badge">
+			{{ $post->likes->count() }}
+		</span>
+	</a>
+@else
+<!-- まだユーザーが「いいね」をしていなければ、「いいね」ボタンを表示 -->
+	<a href="{{ route('like', $post) }}" class="btn btn-secondary btn-sm">
+		いいね
+		<!-- 「いいね」の数を表示 -->
+		<span class="badge">
+			{{ $post->likes->count() }}
+		</span>
+	</a>
+@endif
+</span>
          <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
          <script>
             function deletePost(id) {

@@ -1,12 +1,8 @@
-    <x-app-layout>
-    <x-slot name="header">
-        　ジャンル選択
-    </x-slot>
+<x-app-layout>
     <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <p>{{ Auth::user()->name }}</p>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <style>
         .btn--orange,
@@ -23,8 +19,9 @@
     </head>
     <body>
         <div class='games'>
-            @foreach ($posts as $post)
+            @foreach ($games as $post)
                 <div class='post'>
+                     <small>{{ $post->user->name }}</small>
                     <a href="">{{ $post->game->title }}</a>
                     <p class='body'> 
                       <a href="/games/{{ $post->id }}">{{ $post->body }}</a> 
@@ -36,9 +33,13 @@
                 </div>
             @endforeach    
         </div>
+        <div class="category">
+ 
+</div>
         <div class="footer">
-            <a href="/games/mypage">戻る</a>
+            <a href="/games/mypage">マイページへ</a>
+            <a href="#" onclick="history.back(); return false;">戻る</a>
         </div>
     </body>
 </html>
- </x-app-layout>
+</x-app-layout>

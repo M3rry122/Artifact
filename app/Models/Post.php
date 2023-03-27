@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 use App\Models\game;
+use App\Models\Like;
 
 class Post extends Model
 {
@@ -35,14 +36,13 @@ class Post extends Model
         return $this->belongsTo(User::class);
         //userに対するリレーション
     }
-    
-    public function replies() {
-        return $this->hasMany(reply::class);
-        //replyに対するリレーション
-    }
  
     public function likes() {
         return $this->hasMany(Like::class);
         //likeに対するリレーション
+    }
+    public function replies() {
+        return $this->hasMany(reply::class);
+        //replyに対するリレーション
     }
 }

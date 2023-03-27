@@ -21,13 +21,12 @@
         </style>
     </head>
     <body>
-        <div>
-            @foreach($genres as $genre)
-            <a href="/genre_categories/{{ $genre->id }}">{{ $genre->title }}</a>
-             @endforeach
-        </div>
-        <a href="/games/mypage">マイページへ</a>
+                   @foreach($genres as $genre)
+            <a href="/categories/{{ $genre->id }}">{{ $genre->title }}</a>
+            @endforeach
+            <a href="/games/mypage">マイページへ</a>
             <a href="#" onclick="history.back(); return false;">戻る</a>
+        </div>
     </body>
 </html>
 </x-app-layout>

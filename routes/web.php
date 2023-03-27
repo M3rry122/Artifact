@@ -3,11 +3,15 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Genre_CategoryController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\NiceController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Models\Post;
 use App\Http\Models\User;
-
+use App\Http\Models\game;
+use App\Http\Models\genre;
+use App\Http\Models\Like;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +37,6 @@ Route::controller(GameController::class)->middleware(['auth'])->group(function()
   Route::get('/games/mypage', 'mypage')->name('mypage');
   Route::post('/games', 'store')->name('store');
   Route::get('/games/genre_search', 'genre_search')->name('genre_search');
-  Route::get('/games/fps_tps_select', 'fps_tps_select')->name('fps_tps_select');
   Route::get('/games/apex', 'apex')->name('apex');
   Route::get('/games/create', 'create')->name('create');
   Route::get('/games/{post}', 'show')->name('show');
@@ -42,12 +45,27 @@ Route::controller(GameController::class)->middleware(['auth'])->group(function()
   Route::get('/games/{post}/edit', 'edit')->name('edit');
 });
 
-Route::get('/categories/{game}', [CategoryController::class,'game_index'])->middleware("auth");
-//   /categories/{game}にgetリクエストが来たらCategoryControllerのgame_indexメソッドを呼び出す
+Route::controller(Genre_CategoryController::class)->middleware(['auth'])->group(function(){
+    Route::get('/genre_categories/{genre}', 'genre_index')->name('genre_index');
+});
 
-Route::get('/User', [UserController::class,'mypost'])->middleware("auth");
+Route::controller(CategoryController::class)->middleware(['auth'])->group(function(){
+    Route::get('/categories/{game}','game_index')->name('game_index');
+    //   /categories/{game}にgetリクエストが来たらCategoryControllerのgame_indexメソッドを呼び出す
+});
+
+Route::controller(UserController::class)->middleware(['auth'])->group(function(){
+    Route::get('/User','mypost')->name("mypost");
 //   /Userにgetリクエストが来た際、UserControllerのmypostメソッド呼び出す
-Route::get('/User', [UserController::class, 'mypost'])->middleware("auth")->name('mypost');
+});
+
+// いいねボタン
+Route::controller(LikeController::class)->middleware(['auth'])->group(function(){
+Route::get('/like/{post}', 'like')->name('like');
+//   /likeにgetリクエストが来た際、LikeControllerのlikeメソッド呼び出す
+Route::get('/unlike/{post}', 'unlike')->name('unlike');
+//   /likeにgetリクエストが来た際、LikeControllerのunlikeメソッド呼び出す
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

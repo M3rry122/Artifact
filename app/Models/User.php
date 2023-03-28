@@ -57,7 +57,7 @@ class User extends Authenticatable
 }
     
     public function replies() {
-        return $this->hasMany(reply::class);
+        return $this->hasMany(Reply::class);
         //replyに対するリレーション
     }
  

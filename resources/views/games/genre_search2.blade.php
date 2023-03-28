@@ -1,6 +1,6 @@
  <x-app-layout>
     <x-slot name="header">
-        　ゲームタイトル選択
+        　ジャンル選択
     </x-slot>
     <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -21,12 +21,13 @@
         </style>
     </head>
     <body>
-                   @foreach($genres as $genre)
-            <a href="/categories/{{ $genre->id }}">{{ $genre->title }}</a>
-            @endforeach
-            <a href="/games/mypage">マイページへ</a>
-            <a href="#" onclick="history.back(); return false;">戻る</a>
+        <div>
+            @foreach($genres as $genre)
+            <a href="/genre_categories/create2/{{ $genre->id }}">{{ $genre->title }}</a>
+             @endforeach
         </div>
+        <a href="/games/mypage">マイページへ</a>
+            <a href="#" onclick="history.back(); return false;">戻る</a>
     </body>
 </html>
 </x-app-layout>

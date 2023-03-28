@@ -10,6 +10,7 @@ use App\Models\reply;
 use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\RepliesController;
 use App\Http\Requests\PostRequest;
 
 class GameController extends Controller
@@ -23,6 +24,11 @@ class GameController extends Controller
     {
         $like=Like::where('post_id', $post->id)->where('user_id',auth()->user()->id)->first();
          return view('games/show', compact('post', 'like'));
+    }
+    public function show2(Post $post)
+    {
+        $like=Like::where('post_id', $post->id)->where('user_id',auth()->user()->id)->first();
+         return view('games/show2', compact('post', 'like'));
     }
     public function create(game $game, genre $genre)
     {
@@ -55,6 +61,11 @@ class GameController extends Controller
    public function genre_search(genre $genre)
     {
         return view('games/genre_search')->with(['genres' => $genre->get()]);
+        //genreのデータをgenre_search.blade.phpに渡す
+    }
+    public function genre_search2(genre $genre)
+    {
+        return view('games/genre_search2')->with(['genres' => $genre->get()]);
         //genreのデータをgenre_search.blade.phpに渡す
     }
      public function apex()

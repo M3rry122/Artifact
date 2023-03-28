@@ -28,7 +28,7 @@
                 <p>{{ $post->body }}</p>    
             </div>
         </div>
-                   <span>
+<span>
 <img src="{{asset('img/nicebutton.png')}}" width="30px">
  
 <!-- もし$niceがあれば＝ユーザーが「いいね」をしていたら -->
@@ -115,10 +115,9 @@
             <a href="/games/mypage">マイページへ</a>
             <a href="#" onclick="history.back(); return false;">一覧に戻る</a>
         </div>
-        <div class="edit"><a href="/games/{{ $post->id }}/edit">投稿を編集</a></div>
-         <form action="/games/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+        <form action="/games/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                          @csrf
                          @method('DELETE')
-                    </form>
+        </form>
     </body>
 </html>

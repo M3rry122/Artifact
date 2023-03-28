@@ -18,10 +18,13 @@
                     <x-nav-link :href="route('genre_search')" :active="request()->routeIs('genre_search')">
                        {{ __('検索') }}
                     </x-nav-link>
-                  <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                    <x-nav-link :href="route('genre_search2')" :active="request()->routeIs('genre_search2')">
                        {{ __('募集') }}
                     </x-nav-link>
                     <x-nav-link :href="route('mypost')" :active="request()->routeIs('mypost')">
+                       {{ __('自分の投稿') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('likepost')" :active="request()->routeIs('likepost')">
                        {{ __('自分の投稿') }}
                     </x-nav-link>
                 </div>

@@ -14,4 +14,9 @@ class Genre_CategoryController extends Controller
         return view('genre_categories/genre_index')->with(['genres' => $genre->getBygenre()]);
         //genreの全てのデータをgenre_indexに渡す
     }
+    public function create2(genre $genre)
+    {
+        return view('genre_categories/create2')->with(['genres' => $genre->getBygenre()]);
+        //genreの全てのデータをgenre_indexに渡す
+    }
 }

@@ -24,7 +24,7 @@
                      <small>{{ $post->user->name }}</small>
                     <a href="">{{ $post->game->title }}</a>
                     <p class='body'> 
-                      <a href="/games/{{ $post->id }}">{{ $post->body }}</a> 
+                      <a href="/games/show2/{{ $post->id }}">{{ $post->body }}</a> 
                     </p>
                     <form action="/games/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                          @csrf
@@ -37,7 +37,7 @@
  
 </div>
         <div class="footer">
-            <a href="/games/mypage">マイページへ</a>
+            <a href="/games/mypage">マイページへa</a>
             <a href="#" onclick="history.back(); return false;">戻る</a>
         </div>
     </body>

@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reply extends Model
+class Reply extends Model
 {
     use HasFactory;
+    
+     protected $fillable = [
+     'post_id',
+     'name',
+     'body', 
+    ];
     
     public function user()
     {
